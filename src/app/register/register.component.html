@@ -1,0 +1,23 @@
+<html>
+  <body>
+<div class="content">
+  <h2>Sign Up</h2>
+  <div class="input-container">
+    <div class="label">Username</div>
+    <input type="text" [(ngModel)]="username" placeholder="Enter your username">
+  </div>
+  <div class="input-container">
+    <div class="label">E-mail</div>
+    <input type="email" [(ngModel)]="email" placeholder="Enter your email">
+  </div>
+  <div class="input-container">
+    <div class="label">Password</div>
+    <input type="password" [(ngModel)]="password" placeholder="Enter your password">
+  </div>
+  <div class="footer">
+    <button (click)="register()">Register</button>
+    <button (click)="onLogin()">Back</button>
+  </div>
+</div>
+  </body>
+</html>

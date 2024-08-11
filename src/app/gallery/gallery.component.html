@@ -1,0 +1,75 @@
+<div class="gallery-container">
+  <button type="button" (click)="logout()" class="logout-button">Log out</button>
+  <div class="header" [style.z-index]="headerZIndex">
+    <!-- Hidden file input -->
+    <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/png, image/jpeg, image/jpg" style="display: none;" multiple />
+    
+    <!-- File size error message -->
+    <p *ngIf="fileSizeError" class="error-message">{{ fileSizeError }}</p>
+  </div>
+
+  <!-- Dropzone for drag and drop -->
+  <div class="dropzone" [class.dragging]="isDragging" (drop)="onDrop($event)">
+    <!-- Custom upload button -->
+    <button (click)="triggerFileInput()" class="upload-button">
+      <img src="./assets/choose2.png" alt="Choose File" class="upload-icon">
+      Choose Files
+    </button>
+    <!-- Text below the button -->
+    <p class="drag-drop-text">Or <br>Drop images here</p>
+  </div>
+
+  <!-- Image Previews -->
+  <div *ngIf="selectedFiles.length > 0">
+    <!-- Upload and Cancel buttons -->
+    <div class="button-container">
+      <button (click)="uploadFiles()" class="confirm-button">Upload</button>
+      <button (click)="removeAllSelectedFiles()" class="cancel-button">Cancel</button>
+    </div>
+
+    <div class="image-previews">
+      <div *ngFor="let preview of imagePreviews; let i = index" class="preview-container">
+        <img [src]="preview" alt="Preview" class="preview-image">
+        <p class="file-name" [title]="selectedFiles[i].name">{{ selectedFiles[i].name }}</p>
+        <button class="remove-button" (click)="removeSelectedFile(i)" title="Remove">X</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="album-container">
+    <h2>ALBUM</h2>
+    <div *ngIf="images.length > 0; else noImages" class="image-gallery">
+      <div *ngFor="let image of images; let i = index">
+        <div class="image-container"
+             (mouseenter)="toggleButtons(i, true)"
+             (mouseleave)="toggleButtons(i, false)">
+          <img [src]="'http://localhost/Gallery/api-gallery/uploads/' + image.file_name"
+               (click)="openLightbox(image); toggleHeaderZIndex()"
+               [alt]="image.file_name"
+               class="gallery-image">
+          
+          <!-- Hover overlay for buttons -->
+          <div *ngIf="hoveredImages[i]" class="button-overlay">
+            <button (click)="downloadImage(image.file_name)" class="gallery-button" title="Download">
+              <img src="./assets/download.png" alt="Download" class="icon">
+            </button>
+            <button (click)="confirmDeleteImage(image.image_id)" class="gallery-button" title="Delete">
+              <img src="./assets/delete.png" alt="Delete" class="icon">
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #noImages>
+      <p>No images found.</p>
+    </ng-template>
+  </div>
+
+  <!-- Lightbox component -->
+  <app-lightbox *ngIf="isLightboxOpen"
+                [selectedImage]="selectedImage"
+                (close)="closeLightbox()"
+                (delete)="handleDelete($event)"
+                (download)="downloadImageInLightbox($event)">
+  </app-lightbox>
+</div>

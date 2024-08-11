@@ -1,0 +1,64 @@
+<div *ngIf="selectedImage" class="lightbox-overlay">
+  <button class="back-button" (click)="goBack()"><img src="./assets/close-btn.png" alt="Go back button" class="icon"></button>
+  <div class="lightbox-content" (click)="stopPropagation($event)">
+    <div class="image-container">
+      <img #imageElement [src]="'http://localhost/Gallery/api-gallery/uploads/' + selectedImage.file_name" alt="{{ selectedImage.file_name }}"
+           [style.filter]="'brightness(' + filterSettings.brightness + '%) ' +
+                          'contrast(' + filterSettings.contrast + '%) ' +
+                          'saturate(' + filterSettings.saturate + '%) ' +
+                          'grayscale(' + filterSettings.grayscale + '%) ' +
+                          'sepia(' + filterSettings.sepia + '%) ' +
+                          'blur(' + filterSettings.blur + 'px)'" class="preview-image">
+      <div class="username-container">
+        <p class="username">Uploaded by: {{ selectedImage.username }}</p>
+      </div>
+      <div class="button-container">
+        <button (click)="toggleEditOptions()">
+          <img src="./assets/edit.png" alt="Edit Icon" class="icon" title="Edit Image">
+        </button>
+        <div class="filter-options" *ngIf="showEditOptions">
+          <div class="filter-option">
+            <label for="brightness">Brightness:</label>
+            <input type="range" id="brightness" name="brightness" min="0" max="200" [(ngModel)]="filterSettings.brightness" (input)="applyFilter('brightness', filterSettings.brightness)">
+          </div>
+          <div class="filter-option">
+            <label for="contrast">Contrast:</label>
+            <input type="range" id="contrast" name="contrast" min="0" max="200" [(ngModel)]="filterSettings.contrast" (input)="applyFilter('contrast', filterSettings.contrast)">
+          </div>
+          <div class="filter-option">
+            <label for="saturate">Saturate:</label>
+            <input type="range" id="saturate" name="saturate" min="0" max="200" [(ngModel)]="filterSettings.saturate" (input)="applyFilter('saturate', filterSettings.saturate)">
+          </div>
+          <div class="filter-option">
+            <label for="grayscale">Grayscale:</label>
+            <input type="range" id="grayscale" name="grayscale" min="0" max="100" [(ngModel)]="filterSettings.grayscale" (input)="applyFilter('grayscale', filterSettings.grayscale)">
+          </div>
+          <div class="filter-option">
+            <label for="sepia">Sepia:</label>
+            <input type="range" id="sepia" name="sepia" min="0" max="100" [(ngModel)]="filterSettings.sepia" (input)="applyFilter('sepia', filterSettings.sepia)">
+          </div>
+          <div class="filter-option">
+            <label for="blur">Blur:</label>
+            <input type="range" id="blur" name="blur" min="0" max="10" [(ngModel)]="filterSettings.blur" (input)="applyFilter('blur', filterSettings.blur)">
+          </div>
+          <div class="filter-buttons">
+          <button (click)="resetFilters()"class="butones">Reset</button>
+          <button (click)="updateImage()" class="butones">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comment-section">
+      <h3>Comments</h3>
+      <div *ngFor="let comment of comments" class="comment">
+        <ng-container *ngIf="comment.image_id === selectedImage.image_id">
+          <p><strong class="commenter-name">{{ comment.username }}</strong>: <span class="comment-text">{{ comment.comment_text }}</span></p>
+        </ng-container>
+      </div>
+      <div class="add-comment">
+        <input [(ngModel)]="newComment" placeholder="Write a comment..." class="comment-input" (keydown.enter)="addComment()">
+        <button (click)="addComment()" class="comment-button"><img src="./assets/send-btn.png" alt="Send" title="Send"></button>
+      </div>
+    </div>
+  </div>
+</div>
