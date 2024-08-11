@@ -1,5 +1,9 @@
 <div class="gallery-container">
-  <button type="button" (click)="logout()" class="logout-button">Log out</button>
+  <button type="button" (click)="logout()" class="logout-button">
+  <img src="./assets/logout.png" alt="Log out" class="logout-icon">
+  Log out
+  </button>
+
   <div class="header" [style.z-index]="headerZIndex">
     <!-- Hidden file input -->
     <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/png, image/jpeg, image/jpg" style="display: none;" multiple />
@@ -16,7 +20,7 @@
       Choose Files
     </button>
     <!-- Text below the button -->
-    <p class="drag-drop-text">Or <br>Drop images here</p>
+    <h2 class="drag-drop-text">or <br>Drop images here</h2>
   </div>
 
   <!-- Image Previews -->
@@ -37,7 +41,7 @@
   </div>
 
   <div class="album-container">
-    <h2>ALBUM</h2>
+    <h2>PICTURES</h2>
     <div *ngIf="images.length > 0; else noImages" class="image-gallery">
       <div *ngFor="let image of images; let i = index">
         <div class="image-container"
