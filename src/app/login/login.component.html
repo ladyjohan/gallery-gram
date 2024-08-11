@@ -16,8 +16,7 @@
       </div>
 
       <div class="password">
-        <input [type]="hidePassword ? 'password' : 'text'" name="Password" [(ngModel)]="password" placeholder="Password" required />
-        <img src="./assets/hide-pass.png" class="pass-icon" title="Show Password" id="pass-icon" (click)="togglePasswordVisibility()">
+        <input [type]="hidePassword ? 'password' : 'text'" name="Password" [(ngModel)]="password" placeholder="Enter Password" required />
       </div>
 
       <div class="error-message" *ngIf="loginPrompt">{{ loginPrompt }}</div> <!-- Error message displayed here -->

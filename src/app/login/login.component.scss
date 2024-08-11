@@ -129,10 +129,12 @@ body::after {
 
 .form-title {
   font-size: 26px;
-  font-weight: 600;
   margin-bottom: 20px;
   text-align: center;
   color: #333;
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase; /* Uppercase letters for the title */
+  font-weight: bold; /* Make the title bold */
 }
 
 .email, .password {

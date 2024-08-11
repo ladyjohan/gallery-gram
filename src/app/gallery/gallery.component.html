@@ -1,8 +1,13 @@
 <div class="gallery-container">
-  <button type="button" (click)="logout()" class="logout-button">
-  <img src="./assets/logout.png" alt="Log out" class="logout-icon">
-  Log out
-  </button>
+  <nav class="top-nav">
+    <img src="./assets/gallerygram_logo.png" alt="Logo" class="nav-logo">
+    <h1 class="nav-title">Gallerygram</h1>
+    <button type="button" (click)="logout()" class="logout-button">
+      <img src="./assets/logout.png" alt="Log out" class="logout-icon">
+      Log out
+      </button>
+  </nav>
+
 
   <div class="header" [style.z-index]="headerZIndex">
     <!-- Hidden file input -->
