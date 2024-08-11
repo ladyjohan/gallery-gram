@@ -12,11 +12,11 @@
       <p class="form-title">Gallerygram</p>
 
       <div class="email">
-        <input type="email" name="EmailId" [(ngModel)]="email" placeholder="Enter Email" required />
+        <input type="email" name="EmailId" [(ngModel)]="email" placeholder="Email" required />
       </div>
 
       <div class="password">
-        <input [type]="hidePassword ? 'password' : 'text'" name="Password" [(ngModel)]="password" placeholder="Enter Password" required />
+        <input [type]="hidePassword ? 'password' : 'text'" name="Password" [(ngModel)]="password" placeholder="Password" required />
         <img src="./assets/hide-pass.png" class="pass-icon" title="Show Password" id="pass-icon" (click)="togglePasswordVisibility()">
       </div>
 
@@ -24,7 +24,7 @@
 
       <button type="button" (click)="login()">Log in</button>
 
-      <button type="button" (click)="onRegister()">Sign-up</button>
+      <button type="button" (click)="onRegister()">Sign up</button>
     </form>
   </body>
 </html>

@@ -169,27 +169,28 @@ button {
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: 'Poppins', sans-serif;
 }
 
 button:first-of-type {
-  background-color: #4caf50;
+  background-color: #77DD77;
   color: white;
   flex: 1;
   margin-right: 10px;
 }
 
 button:first-of-type:hover {
-  background-color: #45a049;
+  background-color: #77DD77;
 }
 
 button:last-of-type {
-  background-color: #f44336;
+  background-color: #FF6961;
   color: white;
   flex: 1;
 }
 
 button:last-of-type:hover {
-  background-color: #e53935;
+  background-color: #FF6961;
 }
 
 @media (max-width: 480px) {

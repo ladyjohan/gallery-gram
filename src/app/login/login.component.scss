@@ -178,25 +178,26 @@ button {
   cursor: pointer;
   margin-bottom: 12px;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  background-color: #4caf50; /* Default button color */
+  background-color: #77DD77; /* Default button color */
   color: white;
+  font-family: 'Poppins', sans-serif;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #77DD77;
   transform: translateY(-2px);
 }
 
 button:last-of-type {
-  background-color: #f44336;
+  background-color: #FF6961;
 }
 
 button:last-of-type:hover {
-  background-color: #e53935;
+  background-color: #FF6961;
 }
 
 .error-message {
-  color: #f44336;
+  color: #FF6961;
   margin-bottom: 20px;
   text-align: center;
 }

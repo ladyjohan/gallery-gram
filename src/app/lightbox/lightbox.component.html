@@ -1,6 +1,8 @@
 <div *ngIf="selectedImage" class="lightbox-overlay">
-  <button class="back-button" (click)="goBack()"><img src="./assets/close-btn.png" alt="Go back button" class="icon"></button>
   <div class="lightbox-content" (click)="stopPropagation($event)">
+    <button class="back-button" (click)="goBack()">
+      <img src="./assets/close.png" alt="Close button" class="icon">
+    </button>
     <div class="image-container">
       <img #imageElement [src]="'http://localhost/Gallery/api-gallery/uploads/' + selectedImage.file_name" alt="{{ selectedImage.file_name }}"
            [style.filter]="'brightness(' + filterSettings.brightness + '%) ' +
@@ -9,14 +11,8 @@
                           'grayscale(' + filterSettings.grayscale + '%) ' +
                           'sepia(' + filterSettings.sepia + '%) ' +
                           'blur(' + filterSettings.blur + 'px)'" class="preview-image">
-      <div class="username-container">
-        <p class="username">Uploaded by: {{ selectedImage.username }}</p>
-      </div>
-      <div class="button-container">
-        <button (click)="toggleEditOptions()">
-          <img src="./assets/edit.png" alt="Edit Icon" class="icon" title="Edit Image">
-        </button>
-        <div class="filter-options" *ngIf="showEditOptions">
+      <div class="filter-options-container" *ngIf="showEditOptions">
+        <div class="filter-options">
           <div class="filter-option">
             <label for="brightness">Brightness:</label>
             <input type="range" id="brightness" name="brightness" min="0" max="200" [(ngModel)]="filterSettings.brightness" (input)="applyFilter('brightness', filterSettings.brightness)">
@@ -41,23 +37,33 @@
             <label for="blur">Blur:</label>
             <input type="range" id="blur" name="blur" min="0" max="10" [(ngModel)]="filterSettings.blur" (input)="applyFilter('blur', filterSettings.blur)">
           </div>
-          <div class="filter-buttons">
-          <button (click)="resetFilters()"class="butones">Reset</button>
-          <button (click)="updateImage()" class="butones">Save</button>
-          </div>
+        </div>
+        <div class="filter-buttons">
+          <button (click)="resetFilters()" class="button">Reset</button>
+          <button (click)="updateImage()" class="button">Save</button>
         </div>
       </div>
+      <button class="toggle-edit-button" (click)="toggleEditOptions()">
+        <img src="./assets/filter.png" alt="Edit Icon" class="icon" title="Edit Image">
+      </button>
     </div>
-    <div class="comment-section">
-      <h3>Comments</h3>
-      <div *ngFor="let comment of comments" class="comment">
-        <ng-container *ngIf="comment.image_id === selectedImage.image_id">
-          <p><strong class="commenter-name">{{ comment.username }}</strong>: <span class="comment-text">{{ comment.comment_text }}</span></p>
-        </ng-container>
+    <div class="side-content">
+      <div class="username-container">
+        <p class="username">Uploaded by: {{ selectedImage.username }}</p>
       </div>
-      <div class="add-comment">
-        <input [(ngModel)]="newComment" placeholder="Write a comment..." class="comment-input" (keydown.enter)="addComment()">
-        <button (click)="addComment()" class="comment-button"><img src="./assets/send-btn.png" alt="Send" title="Send"></button>
+      <div class="comment-section">
+        <h3>Comments</h3>
+        <div *ngFor="let comment of comments" class="comment">
+          <ng-container *ngIf="comment.image_id === selectedImage.image_id">
+            <p><strong class="commenter-name">{{ comment.username }}</strong>: <span class="comment-text">{{ comment.comment_text }}</span></p>
+          </ng-container>
+        </div>
+        <div class="add-comment">
+          <input [(ngModel)]="newComment" placeholder="Write a comment..." class="comment-input" (keydown.enter)="addComment()">
+          <button (click)="addComment()" class="comment-button">
+            <img src="./assets/send-btn.png" alt="Send" title="Send">
+          </button>
+        </div>
       </div>
     </div>
   </div>
