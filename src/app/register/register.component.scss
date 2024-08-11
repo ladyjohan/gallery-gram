@@ -1,21 +1,134 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
-html{
-  overflow: hidden;
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
 }
 
+body {
+  background: linear-gradient(-45deg, #fc8185, #f1b5a4, #f5ae9a, #ff9a9e);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  overflow: hidden; /* Ensure particles stay within bounds */
+  position: relative; /* To position circles absolutely */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Ensure logo and form are stacked vertically */
+}
+
+/* Center the content vertically and horizontally */
 .content {
-  background: #ffffff;
-  padding: 40px;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9); /* Adjusted opacity */
+  padding: 30px;
+  position: relative;
+  border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 400px;
   width: 100%;
   box-sizing: border-box;
-  margin-left: 600px;
-  margin-top: 150px;
+  margin: 0 auto; /* Center horizontally */
+  z-index: 2;
 }
 
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Circle Particles */
+body::before, body::after, .circle-1, .circle-2, .circle-3 {
+  content: '';
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: moveParticles 20s linear infinite;
+  z-index: 1; /* Ensure circles are above the background */
+}
+
+/* Circle 1 */
+body::before {
+  width: 100px;
+  height: 100px;
+  bottom: -100px; /* Start below the screen */
+  left: 20%;
+  animation-duration: 12s;
+  animation-delay: 0s;
+}
+
+/* Circle 2 */
+body::after {
+  width: 120px;
+  height: 120px;
+  bottom: -120px; /* Start below the screen */
+  left: 70%;
+  animation-duration: 18s;
+  animation-delay: 2s;
+}
+
+/* Circle 3 */
+.circle-1 {
+  width: 60px;
+  height: 60px;
+  bottom: -60px; /* Start below the screen */
+  left: 30%;
+  animation-duration: 22s;
+  animation-delay: 4s;
+}
+
+/* Circle 4 */
+.circle-2 {
+  width: 150px;
+  height: 150px;
+  bottom: -150px; /* Start below the screen */
+  left: 80%;
+  animation-duration: 25s;
+  animation-delay: 1s;
+}
+
+/* Circle 5 */
+.circle-3 {
+  width: 100px;
+  height: 100px;
+  bottom: -100px; /* Start below the screen */
+  left: 10%;
+  animation-duration: 20s;
+  animation-delay: 3s;
+}
+
+@keyframes moveParticles {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0.8); /* Start from below the screen */
+  }
+  50% {
+    transform: translateY(-150px) translateX(50px) scale(1.1); /* Move up and slightly to the side */
+  }
+  100% {
+    transform: translateY(-100vh) translateX(100px) scale(0.8); /* Exit above the screen */
+  }
+}
+
+/* Logo Container */
+.logo-container {
+  margin-bottom: 20px; /* Space between logo and form */
+  z-index: 2;
+  text-align: center; /* Center logo horizontally */
+}
+
+.logo {
+  width: 100px; /* Adjust width as needed */
+  height: auto;
+  z-index: 2;
+}
+  
 h2 {
   font-size: 24px;
   font-weight: 600;
@@ -36,8 +149,9 @@ h2 {
 input[type="text"], input[type="email"], input[type="password"] {
   width: 100%;
   padding: 12px;
+  outline: none;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 8px;
   box-sizing: border-box;
   font-size: 16px;
 }

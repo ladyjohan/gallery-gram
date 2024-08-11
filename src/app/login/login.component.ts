@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataserviceService } from '../services/dataservice.service';
-import Swal from 'sweetalert2';  // Import SweetAlert2
+import Swal from 'sweetalert2';  
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
