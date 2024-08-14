@@ -12,11 +12,13 @@
       <p class="form-title">Gallerygram</p>
 
       <div class="email">
+        <div class="label">E-mail:</div>
         <input type="email" name="EmailId" [(ngModel)]="email" placeholder="Email" required />
       </div>
 
       <div class="password">
-        <input [type]="hidePassword ? 'password' : 'text'" name="Password" [(ngModel)]="password" placeholder="Enter Password" required />
+        <div class="label">Password:</div>
+        <input [type]="hidePassword ? 'password' : 'text'" name="Password" [(ngModel)]="password" placeholder="Password" required />
       </div>
 
       <div class="error-message" *ngIf="loginPrompt">{{ loginPrompt }}</div> <!-- Error message displayed here -->
