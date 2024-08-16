@@ -38,7 +38,8 @@ export class RegisterComponent {
           title: 'Registration Successful!',
           text: 'You have been registered successfully.',
           confirmButtonColor: '#3085d6',
-          confirmButtonText: 'OK'
+          confirmButtonText: 'OK',
+          backdrop: false  // Ensures the background remains unaffected
         }).then(() => {
           this.router.navigate(['/login']);
         });
@@ -57,7 +58,8 @@ export class RegisterComponent {
         title: 'Missing Username',
         text: 'Please enter a Username.',
         confirmButtonColor: '#3085d6',
-        confirmButtonText: 'OK'
+        confirmButtonText: 'OK',
+        backdrop: false  // Ensures the background remains unaffected
       });
       return false;
     }
@@ -67,7 +69,8 @@ export class RegisterComponent {
         title: 'Missing Email',
         text: 'Please enter an Email address.',
         confirmButtonColor: '#3085d6',
-        confirmButtonText: 'OK'
+        confirmButtonText: 'OK',
+        backdrop: false  // Ensures the background remains unaffected
       });
       return false;
     }
@@ -77,7 +80,8 @@ export class RegisterComponent {
         title: 'Missing Password',
         text: 'Please enter a Password.',
         confirmButtonColor: '#3085d6',
-        confirmButtonText: 'OK'
+        confirmButtonText: 'OK',
+        backdrop: false  // Ensures the background remains unaffected
       });
       return false;
     }
@@ -87,7 +91,8 @@ export class RegisterComponent {
         title: 'Invalid Username',
         text: 'Username should only contain alphabets and numbers.',
         confirmButtonColor: '#3085d6',
-        confirmButtonText: 'OK'
+        confirmButtonText: 'OK',
+        backdrop: false  // Ensures the background remains unaffected
       });
       return false;
     }
@@ -97,7 +102,8 @@ export class RegisterComponent {
         title: 'Invalid Email',
         text: 'Please enter a valid email address ending with @gmail.com.',
         confirmButtonColor: '#3085d6',
-        confirmButtonText: 'OK'
+        confirmButtonText: 'OK',
+        backdrop: false  // Ensures the background remains unaffected
       });
       return false;
     }
@@ -107,7 +113,8 @@ export class RegisterComponent {
         title: 'Invalid Password',
         text: 'Password should be at least 6 characters long.',
         confirmButtonColor: '#3085d6',
-        confirmButtonText: 'OK'
+        confirmButtonText: 'OK',
+        backdrop: false  // Ensures the background remains unaffected
       });
       return false;
     }

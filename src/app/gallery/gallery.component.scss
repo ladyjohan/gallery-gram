@@ -338,4 +338,17 @@
       }
     }
   }
+  .swal2-backdrop {
+    position: fixed;  /* Ensure the backdrop is fixed in place */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);  /* Slight dark tint with 20% opacity */
+    z-index: 999;  /* Ensure it is behind the dialog */
+  }
+  
+  .swal2-popup {
+    z-index: 1000;  /* Ensure the dialog is above the backdrop */
+  }
 }

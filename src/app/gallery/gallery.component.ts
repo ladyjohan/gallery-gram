@@ -67,7 +67,7 @@ export class GalleryComponent {
     const invalidFiles = newFiles.filter(file => file.size > 20 * 1024 * 1024);
 
     if (invalidFiles.length > 0) {
-        this.fileSizeError = 'One or more files exceed 20 MB';
+      this.fileSizeError = 'One or more files exceed 20 MB';
     }
 
     // Append valid files to the existing selectedFiles array
@@ -75,11 +75,11 @@ export class GalleryComponent {
 
     // Generate previews for new valid files
     for (const file of validFiles) {
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-            this.imagePreviews.push(e.target.result);
-        };
-        reader.readAsDataURL(file);
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imagePreviews.push(e.target.result);
+      };
+      reader.readAsDataURL(file);
     }
   }
 
@@ -133,7 +133,8 @@ export class GalleryComponent {
           Swal.fire({
             icon: 'success',
             title: 'Upload Successful',
-            text: 'All files have been uploaded successfully'
+            text: 'All files have been uploaded successfully',
+            backdrop: false  // Ensures the background remains unaffected
           });
           this.fetchImages();
         })
@@ -141,7 +142,8 @@ export class GalleryComponent {
           Swal.fire({
             icon: 'error',
             title: 'Upload Failed',
-            text: error
+            text: error,
+            backdrop: false  // Ensures the background remains unaffected
           });
         })
         .finally(() => {
@@ -153,7 +155,8 @@ export class GalleryComponent {
       Swal.fire({
         icon: 'error',
         title: 'No Files Selected',
-        text: 'Please select files to upload.'
+        text: 'Please select files to upload.',
+        backdrop: false  // Ensures the background remains unaffected
       });
     }
   }
@@ -195,15 +198,17 @@ export class GalleryComponent {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, delete it!',
+      backdrop: false  // Ensures the background remains unaffected
     }).then((result) => {
       if (result.isConfirmed) {
         this.deleteImage(image_id);
-        Swal.fire(
-          'Deleted!',
-          'Your image has been deleted.',
-          'success'
-        );
+        Swal.fire({
+          icon: 'success',
+          title: 'Deleted!',
+          text: 'Your image has been deleted.',
+          backdrop: false  // Ensures the background remains unaffected
+        });
       }
     });
   }
@@ -280,20 +285,21 @@ export class GalleryComponent {
     fileInput.click();
   }
 
-logout() {
-  Swal.fire({
-    title: 'Are you sure?',
-    text: 'Do you really want to log out?',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, log out!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      this.dataService.logout();
-      this.router.navigate(['/login']);
-    }
-  });
-}
+  logout() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you really want to log out?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, log out!',
+      backdrop: false  // Ensures the background remains unaffected
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.dataService.logout();
+        this.router.navigate(['/login']);
+      }
+    });
+  }
 }

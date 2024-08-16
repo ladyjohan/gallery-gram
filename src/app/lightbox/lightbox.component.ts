@@ -74,7 +74,12 @@ export class LightboxComponent {
 
   resetFilters(): void {
     if (JSON.stringify(this.filterSettings) === JSON.stringify(this.originalFilterSettings)) {
-      Swal.fire('No Changes', 'There are no changes to reset.', 'info');
+      Swal.fire({
+        title: 'No Changes',
+        text: 'There are no changes to reset.',
+        icon: 'info',
+        backdrop: false  // Ensures the background remains unaffected
+      });
     } else {
       this.filterSettings.brightness = 100;
       this.filterSettings.contrast = 100;
@@ -84,7 +89,12 @@ export class LightboxComponent {
       this.filterSettings.blur = 0;
 
       this.applyFilters();
-      Swal.fire('Reset', 'Filters have been reset.', 'success');
+      Swal.fire({
+        title: 'Reset',
+        text: 'Filters have been reset.',
+        icon: 'success',
+        backdrop: false  // Ensures the background remains unaffected
+      });
     }
   }
 
@@ -101,13 +111,23 @@ export class LightboxComponent {
       this.filterSettings.blur = 0;
 
       this.applyFilters();
-      Swal.fire('Reset', 'Filters have been reset.', 'success');
+      Swal.fire({
+        title: 'Reset',
+        text: 'Filters have been reset.',
+        icon: 'success',
+        backdrop: false  // Ensures the background remains unaffected
+      });
     }
   }
 
   updateImage(): void {
     if (JSON.stringify(this.filterSettings) === JSON.stringify(this.originalFilterSettings)) {
-      Swal.fire('No Changes', 'There are no changes to save.', 'info');
+      Swal.fire({
+        title: 'No Changes',
+        text: 'There are no changes to save.',
+        icon: 'info',
+        backdrop: false  // Ensures the background remains unaffected
+      });
       return;
     }
   
@@ -148,11 +168,17 @@ export class LightboxComponent {
               icon: 'success',
               didClose: () => {
                 location.reload();
-              }
+              },
+              backdrop: false  // Ensures the background remains unaffected
             });
             this.storeOriginalFilterSettings();
           } else {
-            Swal.fire('Error', 'Error updating image: ' + response.message, 'error');
+            Swal.fire({
+              title: 'Error',
+              text: 'Error updating image: ' + response.message,
+              icon: 'error',
+              backdrop: false  // Ensures the background remains unaffected
+            });
           }
         });
       } else {
@@ -161,7 +187,6 @@ export class LightboxComponent {
     };
   }
   
-
   fetchComments(): void {
     this.dataService.receiveApiRequest('getComments').subscribe(
       (response: any) => {
