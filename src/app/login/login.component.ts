@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataserviceService } from '../services/dataservice.service';
-import Swal from 'sweetalert2';  
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +14,8 @@ import { CommonModule } from '@angular/common';
 })
 export class LoginComponent implements OnInit {
   hidePassword: boolean = true;
-  email: string = ''; // Changed type to string
-  password: string = ''; // Changed type to string
+  email: string = '';
+  password: string = '';
   loginPrompt: string = '';
 
   constructor(
@@ -28,13 +28,7 @@ export class LoginComponent implements OnInit {
 
   async login() {
     if (!this.email || !this.password) {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Missing Credentials',
-        text: 'Please enter both Email and Password.',
-        confirmButtonColor: '#3085d6',
-        confirmButtonText: 'OK'
-      });
+      this.loginPrompt = 'Please enter both Email and Password.';
       return;
     }
 
@@ -43,35 +37,23 @@ export class LoginComponent implements OnInit {
       password: this.password
     };
 
-    await this.ds.sendApiRequest("login", userInfo).subscribe((res: any) => {
-      if (res.payload == null) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Login Unsuccessful',
-          text: 'Incorrect Email or Password!',
-          confirmButtonColor: '#3085d6',
-          confirmButtonText: 'OK'
-        });
-      } else {
-        localStorage.setItem("email", res.payload.email);
-        localStorage.setItem("user_id", res.payload.user_id);
-        localStorage.setItem("username", res.payload.username); // Store user's name
+    this.ds.sendApiRequest("login", userInfo).subscribe(
+      (res: any) => {
+        if (res.payload == null) {
+          this.loginPrompt = 'Incorrect Email or Password!';
+        } else {
+          localStorage.setItem("email", res.payload.email);
+          localStorage.setItem("user_id", res.payload.user_id);
+          localStorage.setItem("username", res.payload.username);
 
-        console.log("Username set in localStorage:", localStorage.getItem("username")); // Debug statement
-        console.log("User_id set in localStorage:", localStorage.getItem("user_id")); // Debug statement
-        console.log("Email set in localStorage:", localStorage.getItem("email")); // Debug statement
-
-        Swal.fire({
-          icon: 'success',
-          title: 'Login Successful',
-          text: `Welcome, ${localStorage.getItem("username")}!`,
-          confirmButtonColor: '#3085d6',
-          confirmButtonText: 'OK'
-        }).then(() => {
           this.router.navigate(["/gallery"]);
-        });
+        }
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Login error:', error);
+        this.loginPrompt = 'An error occurred while logging in. Please try again later.';
       }
-    });
+    );
   }
 
   togglePasswordVisibility() {
@@ -79,6 +61,6 @@ export class LoginComponent implements OnInit {
   }
 
   onRegister(): void {
-    this.router.navigate(['/register']); // Navigate to the register component/page
+    this.router.navigate(['/register']);
   }
 }

@@ -21,7 +21,7 @@
         <input [type]="hidePassword ? 'password' : 'text'" name="Password" [(ngModel)]="password" placeholder="Password" required />
       </div>
 
-      <div class="error-message" *ngIf="loginPrompt">{{ loginPrompt }}</div> <!-- Error message displayed here -->
+      <div class="error-message" *ngIf="loginPrompt">{{ loginPrompt }}</div>
 
       <button type="button" (click)="login()">Log in</button>
 
