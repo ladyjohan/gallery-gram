@@ -70,21 +70,9 @@
   
   .upload-photo-button {
     background: #fff; /* White background */
-    color: transparent; /* Hide text color */
+    color: #5a3131;
     margin-right: 20px; /* Space between buttons */
     position: relative; /* Position for pseudo-elements */
-    
-    &:before {
-      content: 'Upload Photo'; /* Button text */
-      background: linear-gradient(135deg, #6A1B9A, #D500F9); /* Gradient text */
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 16px; /* Adjust as needed */
-    }
     
     &:hover {
       background: #f0f0f0; /* Light grey background on hover */
@@ -102,15 +90,15 @@
   }
   
   .logout-button {
-    background: linear-gradient(135deg, #6A1B9A, #D500F9); /* Gradient background */
+    background: linear-gradient(135deg, #ff7e8d, #ff9a9e); /* Peachy pink gradient background */
     color: #fff; /* White text color */
     
     &:hover {
-      background: linear-gradient(135deg, #4A0072, #AA00FF); /* Darker gradient on hover */
+      background: linear-gradient(135deg, #ff6b7a, #ff8d8f); /* Darker peachy pink gradient on hover */
     }
     
     &:active {
-      background: linear-gradient(135deg, #3D0070, #9C00E3); /* Darker gradient on click */
+      background: linear-gradient(135deg, #ff4f6e, #ff7c7f); /* Darker peachy pink gradient on click */
     }
     
     .logout-icon {
@@ -118,7 +106,7 @@
       margin-right: 10px; /* Space between icon and text */
       transition: transform 0.3s ease; /* Smooth transition for icon */
     }
-  }
+  }  
   
   .header {
     display: flex;
@@ -147,7 +135,7 @@
     }
   
     .upload-button {
-      background: linear-gradient(135deg, #f6ad55, #ed8936); // Updated gradient colors
+      background: linear-gradient(135deg, #72113e, #ce1c89); // Updated gradient colors
       color: #fff;
       border: none;
       padding: 14px 28px; // Adjusted padding
@@ -165,12 +153,12 @@
       font-family: 'Poppins', sans-serif;
   
       &:hover {
-        background: linear-gradient(135deg, #ed8936, #f6ad55); // Reversed gradient on hover
+        background: linear-gradient(135deg, #ce1c89, #72113e); // Reversed gradient on hover
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
       }
   
       &:active {
-        background: linear-gradient(135deg, #dd6b20, #c05621); // Darker gradient on click
+        background: linear-gradient(135deg, #ce1c89, #f078b0); // Darker gradient on click
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
   
