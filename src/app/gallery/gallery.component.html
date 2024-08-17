@@ -2,12 +2,17 @@
   <nav class="top-nav">
     <img src="./assets/gallerygram_logo.png" alt="Logo" class="nav-logo">
     <h1 class="nav-title">Gallerygram</h1>
-    <button type="button" (click)="logout()" class="logout-button">
-      <img src="./assets/logout.png" alt="Log out" class="logout-icon">
-      Log out
+    <div class="nav-buttons">
+      <button type="button" (click)="openUploadLightbox()" class="upload-photo-button">
+        <img src="./assets/upload.png" alt="Upload Photo" class="upload-photo-icon">
+        Upload Photo
       </button>
+      <button type="button" (click)="logout()" class="logout-button">
+        <img src="./assets/logout.png" alt="Log out" class="logout-icon">
+        Log out
+      </button>
+    </div>
   </nav>
-
 
   <div class="header" [style.z-index]="headerZIndex">
     <!-- Hidden file input -->
@@ -15,34 +20,6 @@
     
     <!-- File size error message -->
     <p *ngIf="fileSizeError" class="error-message">{{ fileSizeError }}</p>
-  </div>
-
-  <!-- Dropzone for drag and drop -->
-  <div class="dropzone" [class.dragging]="isDragging" (drop)="onDrop($event)">
-    <!-- Custom upload button -->
-    <button (click)="triggerFileInput()" class="upload-button">
-      <img src="./assets/choose2.png" alt="Choose File" class="upload-icon">
-      Choose Files
-    </button>
-    <!-- Text below the button -->
-    <h2 class="drag-drop-text">or <br>Drop images here</h2>
-  </div>
-
-  <!-- Image Previews -->
-  <div *ngIf="selectedFiles.length > 0">
-    <!-- Upload and Cancel buttons -->
-    <div class="button-container">
-      <button (click)="uploadFiles()" class="confirm-button">Upload</button>
-      <button (click)="removeAllSelectedFiles()" class="cancel-button">Cancel</button>
-    </div>
-
-    <div class="image-previews">
-      <div *ngFor="let preview of imagePreviews; let i = index" class="preview-container">
-        <img [src]="preview" alt="Preview" class="preview-image">
-        <p class="file-name" [title]="selectedFiles[i].name">{{ selectedFiles[i].name }}</p>
-        <button class="remove-button" (click)="removeSelectedFile(i)" title="Remove">X</button>
-      </div>
-    </div>
   </div>
 
   <div class="album-container">
@@ -53,7 +30,7 @@
              (mouseenter)="toggleButtons(i, true)"
              (mouseleave)="toggleButtons(i, false)">
           <img [src]="'http://localhost/Gallery/api-gallery/uploads/' + image.file_name"
-               (click)="openLightbox(image); toggleHeaderZIndex()"
+               (click)="openImageLightbox(image); toggleHeaderZIndex()"
                [alt]="image.file_name"
                class="gallery-image">
           
@@ -74,10 +51,51 @@
     </ng-template>
   </div>
 
+  <!-- Lightbox for Dropzone -->
+  <div class="lightbox" *ngIf="isUploadLightboxOpen">
+    <div class="lightbox-content">
+      <!-- Dropzone inside the lightbox -->
+      <div class="dropzone" [class.dragging]="isDragging" (drop)="onDrop($event)">
+        <button (click)="triggerFileInput()" class="upload-button">
+          <img src="./assets/choose2.png" alt="Choose File" class="upload-icon">
+          Choose Files
+        </button>
+        <p class="drag-drop-text">or <br>Drag images here</p>
+      </div>
+      
+      <!-- Display selected images in the lightbox -->
+      <div class="image-previews lightbox-previews">
+        <div *ngFor="let preview of lightboxImagePreviews" class="preview-container">
+          <img [src]="preview" alt="Preview" class="preview-image">
+          <p class="file-name">New Image</p>
+        </div>
+      </div>
+
+      <!-- Image Previews -->
+      <div *ngIf="selectedFiles.length > 0">
+        <!-- Upload and Cancel buttons -->
+        <div class="button-container">
+          <button (click)="uploadFiles()" class="confirm-button">Upload</button>
+          <button (click)="removeAllSelectedFiles()" class="cancel-button">Cancel</button>
+        </div>
+
+        <div class="image-previews">
+          <div *ngFor="let preview of imagePreviews; let i = index" class="preview-container">
+            <img [src]="preview" alt="Preview" class="preview-image">
+            <p class="file-name" [title]="selectedFiles[i].name">{{ selectedFiles[i].name }}</p>
+            <button class="remove-button" (click)="removeSelectedFile(i)" title="Remove">X</button>
+          </div>
+        </div>
+      </div>
+
+      <button (click)="closeUploadLightbox()" class="close-button">x</button>
+    </div>
+  </div>
+
   <!-- Lightbox component -->
-  <app-lightbox *ngIf="isLightboxOpen"
+  <app-lightbox *ngIf="isImageLightboxOpen && !showDropzoneLightbox"
                 [selectedImage]="selectedImage"
-                (close)="closeLightbox()"
+                (close)="closeImageLightbox()"
                 (delete)="handleDelete($event)"
                 (download)="downloadImageInLightbox($event)">
   </app-lightbox>

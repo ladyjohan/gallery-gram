@@ -26,7 +26,7 @@
   .top-nav {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; /* Distribute space between items */
     padding: 10px 20px;
     background-color: #f78488; /* Dark peach pink */
     color: #fff;
@@ -36,17 +36,13 @@
     width: 100%;
     z-index: 10;
     transition: transform 0.3s ease;
+  }
   
-    &.hide {
-      transform: translateY(-100%);
-    }
-  }  
-
   .nav-logo {
     width: 40px; /* Adjust size as needed */
     height: auto;
   }
-
+  
   .nav-title {
     font-family: 'Poppins', sans-serif;
     font-size: 1.5em;
@@ -56,39 +52,74 @@
     font-weight: bold; /* Make the title bold */
     text-transform: uppercase; /* Uppercase letters for the title */
   }
-
+  
+  .upload-photo-button,
   .logout-button {
     font-family: 'Poppins', sans-serif;
-    background: #FF6961; /* Gradient background */
-    color: #fff;
-    border: none;
-    padding: 10px 18px; 
-    border-radius: 8px; 
-    cursor: pointer;
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-    transition: all 0.3s ease; 
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
-    margin-right: 50px; 
-
+    display: flex; /* Flexbox inside buttons */
+    align-items: center; /* Center icon and text vertically */
+    justify-content: center; /* Center content horizontally */
+    border: none; /* Remove border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px 15px; /* Adjust padding for alignment */
+    font-size: 15px; /* Font size for consistency */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.3s ease; /* Smooth transition for background and shadow */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+  }
+  
+  .upload-photo-button {
+    background: #fff; /* White background */
+    color: transparent; /* Hide text color */
+    margin-right: 20px; /* Space between buttons */
+    position: relative; /* Position for pseudo-elements */
+    
+    &:before {
+      content: 'Upload Photo'; /* Button text */
+      background: linear-gradient(135deg, #6A1B9A, #D500F9); /* Gradient text */
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 16px; /* Adjust as needed */
+    }
+    
     &:hover {
-      background: linear-gradient(135deg, #4299e1, #63b3ed); /* Reverse gradient on hover */
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+      background: #f0f0f0; /* Light grey background on hover */
     }
-  
+    
     &:active {
-      background: linear-gradient(135deg, #3182ce, #2b6cb0); /* Darker gradient on click */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Smaller shadow on click */
+      background: #e0e0e0; /* Darker grey on click */
     }
+    
+    .upload-photo-icon {
+      width: 22px; /* Icon size */
+      margin-right: 10px; /* Space between icon and text */
+      transition: transform 0.3s ease; /* Smooth transition for icon */
+    }
+  }
   
+  .logout-button {
+    background: linear-gradient(135deg, #6A1B9A, #D500F9); /* Gradient background */
+    color: #fff; /* White text color */
+    
+    &:hover {
+      background: linear-gradient(135deg, #4A0072, #AA00FF); /* Darker gradient on hover */
+    }
+    
+    &:active {
+      background: linear-gradient(135deg, #3D0070, #9C00E3); /* Darker gradient on click */
+    }
+    
     .logout-icon {
       width: 22px; /* Icon size */
       margin-right: 10px; /* Space between icon and text */
       transition: transform 0.3s ease; /* Smooth transition for icon */
     }
   }
-
+  
   .header {
     display: flex;
     flex-direction: column;
@@ -102,140 +133,138 @@
 
   .dropzone {
     border: 2px dashed #a0aec0;
-    border-radius: 5px;
-    width: 100%;
-    max-width: 800px;
-    height: 250px;
+    border-radius: 10px; // More rounded corners
     margin-top: 70px;
-    padding: 0;
+    padding: 100px; // Reduced padding for a more compact look
     text-align: center;
-    transition: border-color 0.3s;
+    cursor: pointer;
+    transition: border-color 0.3s, background 0.3s;
     position: relative;
-    background: #edf2f7;
-
+    background: #f7fafc; // Slightly lighter background for a cleaner look
+  
+    &:hover {
+      border-color: #63b3ed; // Border color change on hover
+    }
+  
     .upload-button {
-      background: linear-gradient(135deg, #63b3ed, #4299e1); /* Gradient background */
+      background: linear-gradient(135deg, #f6ad55, #ed8936); // Updated gradient colors
       color: #fff;
       border: none;
-      padding: 12px 24px; /* Slightly larger padding for a modern look */
+      padding: 14px 28px; // Adjusted padding
       cursor: pointer;
-      border-radius: 8px; /* Rounded corners */
+      border-radius: 12px; // More rounded corners
       display: flex;
       align-items: center;
-      justify-content: center; /* Center the content */
-      transition: all 0.3s ease; /* Smooth transition for all properties */
+      justify-content: center;
+      transition: all 0.3s ease;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-    
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-      font-family: 'Poppins', sans-serif; /* Ensure consistent font styling */
-    
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      font-family: 'Poppins', sans-serif;
+  
       &:hover {
-        background: linear-gradient(135deg, #4299e1, #63b3ed); /* Reverse gradient on hover */
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+        background: linear-gradient(135deg, #ed8936, #f6ad55); // Reversed gradient on hover
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
       }
-    
+  
       &:active {
-        background: linear-gradient(135deg, #3182ce, #2b6cb0); /* Darker gradient on click */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Smaller shadow on click */
+        background: linear-gradient(135deg, #dd6b20, #c05621); // Darker gradient on click
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
-    
+  
       .upload-icon {
-        width: 22px; /* Slightly larger icon */
-        margin-right: 8px; /* Space between icon and text */
-        transition: transform 0.3s ease; /* Smooth transition for icon */
+        width: 24px; // Slightly larger icon
+        margin-right: 12px; // Space between icon and text
+        transition: transform 0.3s ease;
       }
     }
-    
+  
     .drag-drop-text {
       position: absolute;
-      top: 60%;
+      top: 80%;
       left: 50%;
-      transform: translateX(-50%);
-      font-size: 1rem;
-      color: #4a5568;
+      transform: translate(-50%, -50%);
+      font-size: 13px; // Larger text for better readability
+      color: #2d3748;
+      font-weight: bold;
     }
-
+  
     &.dragging {
       border-color: #63b3ed;
+      background: #e2e8f0; // Background color change during dragging
     }
   }
-
+  
   .button-container {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
-
-    .confirm-button {
-      background-color: #38a169;
+    margin-top: 20px; // Increased spacing
+  
+    .confirm-button, .cancel-button {
       font-family: 'Poppins', sans-serif;
       color: #fff;
       border: none;
-      padding: 10px 20px;
+      padding: 12px 24px; // Larger padding for consistency
       cursor: pointer;
-      border-radius: 5px;
+      border-radius: 8px; // Rounded corners
       margin: 5px;
       display: flex;
       align-items: center;
-      transition: background-color 0.3s;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-
+      transition: background-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  
+      &:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+    }
+  
+    .confirm-button {
+      background-color: #38a169; // Green color for confirmation
       &:hover {
         background-color: #2f855a;
       }
     }
-
+  
     .cancel-button {
-      background-color: #e53e3e;
-      font-family: 'Poppins', sans-serif;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      border-radius: 5px;
-      margin: 5px;
-      display: flex;
-      align-items: center;
-      transition: background-color 0.3s;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-
+      background-color: #e53e3e; // Red color for cancellation
       &:hover {
         background-color: #c53030;
       }
     }
   }
-
+  
   .image-previews {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 20px; // Increased gap for better spacing
     margin-bottom: 40px;
-
+  
     .preview-container {
-      width: 90px;
-      height: 90px;
+      width: 120px; // Larger preview container
+      height: 120px;
       position: relative;
-
+  
       .preview-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 5px;
-        z-index: 1;  /* Ensure image is clickable */
+        border-radius: 8px; // More rounded corners
+        z-index: 1;
       }
-
+  
       .file-name {
         text-align: center;
-        font-size: 0.75rem;
+        font-size: 0.875rem; // Slightly larger text
         color: #2d3748;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         cursor: pointer;
+        margin-top: 5px;
       }
-
+  
       .remove-button {
         position: absolute;
         top: 5px;
@@ -244,26 +273,26 @@
         color: white;
         border: none;
         border-radius: 50%;
-        width: 18px;
-        height: 18px;
+        width: 20px; // Larger button
+        height: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        font-size: 10px;
+        font-size: 12px;
         font-weight: bold;
         transition: background-color 0.3s;
         z-index: 2;
-
+  
         &:hover {
           background-color: #c53030;
         }
       }
     }
   }
-
+  
   .album-container {
-    margin-top: 20px;
+    margin-top: 100px;
     width: 100%;
     max-width: 1200px;
     text-align: center;
@@ -326,8 +355,8 @@
           margin: 0 5px;
 
           .icon {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
           }
         }
       }
@@ -352,3 +381,96 @@
     z-index: 1000;  /* Ensure the dialog is above the backdrop */
   }
 }
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.lightbox-content {
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  position: relative;
+  width: 80%;
+  max-width: 600px; /* Reduced max width */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff6b6b;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.close-button:hover {
+  background: #ff4757;
+}
+
+.upload-lightbox-content {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  position: relative;
+  width: 80%;
+  max-width: 600px; /* Reduced max width */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.upload-lightbox .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.upload-lightbox .close-button:hover {
+  background: #ff4757;
+}
+
+.image-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px; /* Reduced gap */
+  margin-top: 15px;
+}
+
+.image-preview {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+

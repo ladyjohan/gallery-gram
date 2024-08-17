@@ -16,11 +16,15 @@ export class GalleryComponent {
   imagePreviews: string[] = [];
   error: string | undefined;
   selectedImage: any;
-  isLightboxOpen = false;
+  lightboxImagePreviews: string[] = [];
+  isImageLightboxOpen = false; // Lightbox for image viewing
+  isUploadLightboxOpen = false; // Lightbox for image uploads
+  showDropzoneLightbox = false; // Controls visibility of dropzone lightbox
   uploadIconVisible: boolean = false;
   showButtons = false;
   hoveredImages: boolean[] = [];
   isDragging: boolean = false;
+  headerZIndex = 100;
 
   constructor(private dataService: DataserviceService, private http: HttpClient, private router: Router) {
     this.images.forEach(() => this.hoveredImages.push(false));
@@ -83,17 +87,11 @@ export class GalleryComponent {
     }
   }
 
-  headerZIndex = 100;
-
   toggleHeaderZIndex(): void {
     this.headerZIndex = 0;
   }
 
   toggleButtons(index: number, hovered: boolean): void {
-    this.hoveredImages[index] = hovered;
-  }
-
-  toggleHoverEffect(index: number, hovered: boolean): void {
     this.hoveredImages[index] = hovered;
   }
 
@@ -260,15 +258,23 @@ export class GalleryComponent {
     );
   }
 
-  openLightbox(image: any): void {
+  openImageLightbox(image: any): void {
     this.selectedImage = image;
-    this.isLightboxOpen = true;
+    this.isImageLightboxOpen = true;
   }
 
-  closeLightbox(): void {
+  closeImageLightbox(): void {
     this.headerZIndex = 100;
     this.selectedImage = null;
-    this.isLightboxOpen = false;
+    this.isImageLightboxOpen = false;
+  }
+
+  openUploadLightbox(): void {
+    this.isUploadLightboxOpen = true;
+  }
+
+  closeUploadLightbox(): void {
+    this.isUploadLightboxOpen = false;
   }
 
   handleUpdateImage(): void {
@@ -277,14 +283,14 @@ export class GalleryComponent {
 
   handleDelete(image: any): void {
     this.confirmDeleteImage(image.id);
-    this.closeLightbox();
+    this.closeImageLightbox();
   }
 
   triggerFileInput(): void {
     const fileInput = document.getElementById('fileInput') as HTMLElement;
     fileInput.click();
   }
-
+  
   logout() {
     Swal.fire({
       title: 'Are you sure?',
@@ -293,11 +299,10 @@ export class GalleryComponent {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, log out!',
-      backdrop: false  // Ensures the background remains unaffected
+      confirmButtonText: 'Yes, log out!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.dataService.logout();
+        localStorage.clear();
         this.router.navigate(['/login']);
       }
     });
