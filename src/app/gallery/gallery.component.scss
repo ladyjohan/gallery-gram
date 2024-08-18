@@ -1,4 +1,6 @@
 .gallery-container {
+  margin-top: 0px;
+  margin-bottom: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,91 +24,6 @@
       background-position: 0% 50%;
     }
   }
-
-  .top-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Distribute space between items */
-    padding: 10px 20px;
-    background-color: #f78488; /* Dark peach pink */
-    color: #fff;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10;
-    transition: transform 0.3s ease;
-  }
-  
-  .nav-logo {
-    width: 40px; /* Adjust size as needed */
-    height: auto;
-  }
-  
-  .nav-title {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.5em;
-    margin: 0;
-    flex-grow: 1;
-    padding-left: 10px; /* Space between the logo and title */
-    font-weight: bold; /* Make the title bold */
-    text-transform: uppercase; /* Uppercase letters for the title */
-  }
-  
-  .upload-photo-button,
-  .logout-button {
-    font-family: 'Poppins', sans-serif;
-    display: flex; /* Flexbox inside buttons */
-    align-items: center; /* Center icon and text vertically */
-    justify-content: center; /* Center content horizontally */
-    border: none; /* Remove border */
-    border-radius: 8px; /* Rounded corners */
-    padding: 10px 15px; /* Adjust padding for alignment */
-    font-size: 15px; /* Font size for consistency */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: all 0.3s ease; /* Smooth transition for background and shadow */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Shadow for depth */
-  }
-  
-  .upload-photo-button {
-    background: #fff; /* White background */
-    color: #5a3131;
-    margin-right: 20px; /* Space between buttons */
-    position: relative; /* Position for pseudo-elements */
-    
-    &:hover {
-      background: #f0f0f0; /* Light grey background on hover */
-    }
-    
-    &:active {
-      background: #e0e0e0; /* Darker grey on click */
-    }
-    
-    .upload-photo-icon {
-      width: 22px; /* Icon size */
-      margin-right: 10px; /* Space between icon and text */
-      transition: transform 0.3s ease; /* Smooth transition for icon */
-    }
-  }
-  
-  .logout-button {
-    background: linear-gradient(135deg, #ff7e8d, #ff9a9e); /* Peachy pink gradient background */
-    color: #fff; /* White text color */
-    
-    &:hover {
-      background: linear-gradient(135deg, #ff6b7a, #ff8d8f); /* Darker peachy pink gradient on hover */
-    }
-    
-    &:active {
-      background: linear-gradient(135deg, #ff4f6e, #ff7c7f); /* Darker peachy pink gradient on click */
-    }
-    
-    .logout-icon {
-      width: 22px; /* Icon size */
-      margin-right: 10px; /* Space between icon and text */
-      transition: transform 0.3s ease; /* Smooth transition for icon */
-    }
-  }  
   
   .header {
     display: flex;
@@ -121,82 +38,90 @@
 
   .dropzone {
     border: 2px dashed #a0aec0;
-    border-radius: 10px; // More rounded corners
+    border-radius: 10px; /* More rounded corners */
     margin-top: 70px;
-    padding: 100px; // Reduced padding for a more compact look
+    padding: 90px; /* Increased padding for a larger drag-and-drop area */
     text-align: center;
     cursor: pointer;
     transition: border-color 0.3s, background 0.3s;
     position: relative;
-    background: #f7fafc; // Slightly lighter background for a cleaner look
+    background: #f7fafc; /* Slightly lighter background for a cleaner look */
+    max-height: 80vh; /* Prevents the dropzone from growing too large */
+    overflow: auto; /* Allows for scrolling if content exceeds the viewport */
+    
+    /* Center dropzone horizontally and keep it in view */
+    margin-left: auto;
+    margin-right: auto;
   
     &:hover {
-      border-color: #63b3ed; // Border color change on hover
+      border-color: #63b3ed; /* Border color change on hover */
     }
   
     .upload-button {
-      background: linear-gradient(135deg, #72113e, #ce1c89); // Updated gradient colors
+      background-color: #f78488; /* Dark peach pink */
       color: #fff;
       border: none;
-      padding: 14px 28px; // Adjusted padding
+      padding: 12px 24px; /* Reduced padding for a more compact button */
       cursor: pointer;
-      border-radius: 12px; // More rounded corners
+      border-radius: 12px; /* More rounded corners */
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
       position: absolute;
-      top: 50%;
+      top: 30%;
       left: 50%;
       transform: translate(-50%, -50%);
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
       font-family: 'Poppins', sans-serif;
   
       &:hover {
-        background: linear-gradient(135deg, #ce1c89, #72113e); // Reversed gradient on hover
+        background: linear-gradient(-45deg, #fc8185, #f1b5a4, #f5ae9a, #ff9a9e);
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
       }
   
       &:active {
-        background: linear-gradient(135deg, #ce1c89, #f078b0); // Darker gradient on click
+        background: linear-gradient(-45deg, #fc8185, #f1b5a4, #f5ae9a, #ff9a9e);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
   
       .upload-icon {
-        width: 24px; // Slightly larger icon
-        margin-right: 12px; // Space between icon and text
+        width: 24px; /* Slightly larger icon */
+        margin-right: 10px; /* Reduced space between icon and text */
         transition: transform 0.3s ease;
       }
     }
   
     .drag-drop-text {
       position: absolute;
-      top: 80%;
+      top: 60%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 13px; // Larger text for better readability
+      font-size: 13px; /* Larger text for better readability */
       color: #2d3748;
       font-weight: bold;
     }
   
     &.dragging {
       border-color: #63b3ed;
-      background: #e2e8f0; // Background color change during dragging
+      background: #e2e8f0; /* Background color change during dragging */
+      padding: 100px; /* Further increase padding to make dragging area larger */
+      max-height: 85vh; /* Adjust max-height if necessary to accommodate larger area */
     }
   }
   
   .button-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px; // Increased spacing
+    margin-top: 20px; /* Increased spacing */
   
     .confirm-button, .cancel-button {
       font-family: 'Poppins', sans-serif;
       color: #fff;
       border: none;
-      padding: 12px 24px; // Larger padding for consistency
+      padding: 12px 24px; /* Consistent padding for buttons */
       cursor: pointer;
-      border-radius: 8px; // Rounded corners
+      border-radius: 8px; /* Rounded corners */
       margin: 5px;
       display: flex;
       align-items: center;
@@ -209,14 +134,14 @@
     }
   
     .confirm-button {
-      background-color: #38a169; // Green color for confirmation
+      background-color: #38a169; /* Green color for confirmation */
       &:hover {
         background-color: #2f855a;
       }
     }
   
     .cancel-button {
-      background-color: #e53e3e; // Red color for cancellation
+      background-color: #e53e3e; /* Red color for cancellation */
       &:hover {
         background-color: #c53030;
       }
@@ -226,31 +151,37 @@
   .image-previews {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; // Increased gap for better spacing
-    margin-bottom: 40px;
+    gap: 15px; /* Reduced gap for a more compact layout */
+    margin-bottom: 20px; /* Reduced margin for a more compact layout */
+    max-height: 200px; /* Set a max-height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 10px;
+    
+    /* Optional: Hide horizontal scrollbar if not needed */
+    overflow-x: hidden;
   
     .preview-container {
-      width: 120px; // Larger preview container
-      height: 120px;
+      width: 100px; /* Smaller preview container */
+      height: 100px;
       position: relative;
   
       .preview-image {
         width: 100%;
-        height: 100%;
+        height: 85%;
         object-fit: cover;
-        border-radius: 8px; // More rounded corners
+        border-radius: 8px; /* More rounded corners */
         z-index: 1;
       }
   
       .file-name {
         text-align: center;
-        font-size: 0.875rem; // Slightly larger text
+        font-size: 0.75rem; /* Smaller text */
         color: #2d3748;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         cursor: pointer;
-        margin-top: 5px;
+        margin-top: 10px;
       }
   
       .remove-button {
@@ -261,8 +192,8 @@
         color: white;
         border: none;
         border-radius: 50%;
-        width: 20px; // Larger button
-        height: 20px;
+        width: 18px; /* Slightly smaller button */
+        height: 18px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -279,8 +210,10 @@
     }
   }
   
+  
+  
   .album-container {
-    margin-top: 100px;
+    margin-top: 60px;
     width: 100%;
     max-width: 1200px;
     text-align: center;
@@ -462,3 +395,98 @@
   border-radius: 8px;
 }
 
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Distribute space between items */
+  padding: 10px 20px;
+  background-color: #f78488; /* Dark peach pink */
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+
+  /* Flex container for logo and title */
+  .nav-content {
+    display: flex;
+    align-items: center; /* Align items vertically in the center */
+    gap: 10px; /* Space between logo and title */
+    flex: 1; /* Allow the nav content to take available space */
+  }
+
+  .nav-logo {
+    width: 40px; /* Adjust size as needed */
+    height: auto;
+  }
+  
+  .nav-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5em;
+    margin: 0;
+    padding-left: 10px; /* Space between the logo and title */
+    font-weight: bold; /* Make the title bold */
+    text-transform: uppercase; /* Uppercase letters for the title */
+  }
+
+  .nav-buttons {
+    display: flex; /* Flexbox for side-by-side buttons */
+    align-items: center;
+    gap: 10px; /* Space between buttons */
+    overflow: hidden; /* Prevent content from overflowing */
+    flex-shrink: 0; /* Prevent container from shrinking */
+    
+    .upload-photo-button,
+    .logout-button {
+      font-family: 'Poppins', sans-serif;
+      display: flex; /* Flexbox inside buttons */
+      align-items: center; /* Center icon and text vertically */
+      justify-content: center; /* Center content horizontally */
+      border: none; /* Remove border */
+      border-radius: 8px; /* Rounded corners */
+      padding: 10px 15px; /* Adjust padding for alignment */
+      font-size: 15px; /* Font size for consistency */
+      cursor: pointer; /* Pointer cursor on hover */
+      transition: all 0.3s ease; /* Smooth transition for background and shadow */
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+      flex-shrink: 1; /* Allow buttons to shrink if needed */
+      max-width: calc(100% - 20px); /* Prevent buttons from exceeding container width */
+    }
+
+    .upload-photo-button {
+      background: #fff; /* White background */
+      color: #5a3131;
+      &:hover {
+        background: #f0f0f0; /* Light grey background on hover */
+      }
+      &:active {
+        background: #e0e0e0; /* Darker grey on click */
+      }
+      
+      .upload-photo-icon {
+        width: 15px; /* Icon size */
+        margin-right: 10px; /* Space between icon and text */
+        transition: transform 0.3s ease; /* Smooth transition for icon */
+      }
+    }
+    
+    .logout-button {
+      background: linear-gradient(135deg, #ff7e8d, #ff9a9e); /* Peachy pink gradient background */
+      color: #fff;
+      &:hover {
+        background: linear-gradient(135deg, #ff6b7a, #ff8d8f); /* Darker peachy pink gradient on hover */
+      }
+      &:active {
+        background: linear-gradient(135deg, #ff4f6e, #ff7c7f); /* Darker peachy pink gradient on click */
+      }
+      
+      .logout-icon {
+        width: 15px; /* Icon size */
+        margin-right: 10px; /* Space between icon and text */
+        transition: transform 0.3s ease; /* Smooth transition for icon */
+      }
+    }  
+  }
+}

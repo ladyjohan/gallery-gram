@@ -1,7 +1,9 @@
 <div class="gallery-container">
   <nav class="top-nav">
-    <img src="./assets/gallerygram_logo.png" alt="Logo" class="nav-logo">
-    <h1 class="nav-title">Gallerygram</h1>
+    <div class="nav-content">
+      <img src="./assets/gallerygram_logo.png" alt="Logo" class="nav-logo">
+      <h1 class="nav-title">Gallerygram</h1>
+    </div>
     <div class="nav-buttons">
       <button type="button" (click)="openUploadLightbox()" class="upload-photo-button">
         <img src="./assets/upload.png" alt="Upload Photo" class="upload-photo-icon">
@@ -13,7 +15,7 @@
       </button>
     </div>
   </nav>
-
+  
   <div class="header" [style.z-index]="headerZIndex">
     <!-- Hidden file input -->
     <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/png, image/jpeg, image/jpg" style="display: none;" multiple />
